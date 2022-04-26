@@ -53,13 +53,14 @@ FILE=$("ls" ${OUTDIR}/)
 OUTFILE=$("ls" ${OUTDIR}/ | sed "s/.enc4//g")
 echo "Decrypting Firmware..."
 sleep 1
-samloader -m "${MODEL}" -r "${REGION}" decrypt -v "${FW_VERSION}" -i "${FILE}" -o "${OUTFILE}" || exit 1
+samloader -m "${MODEL}" -r "${REGION}" decrypt -v "${FW_VERSION}" -i "${OUTDIR}/${FILE}" -o "${OUTDIR}/${OUTFILE}" || exit 1
 echo "Firmware Decrypted Successfully"
 rm -rf "${FILE}"
 sleep 1
 
 # Uploading Firmware
-LINK=$(curl https://oshi.at -F f=@"${OUTDIR}"/$(basename ${OUTFILE}) -F shorturl=0 -F expire=43200 | grep DL | cut -d' ' -f2)
+echo "Uploading Firmware..."
+LINK=$(curl -T "${OUTDIR}/${OUTFILE}" "https://oshi.at/?expire=43200&shorturl=0" -H 'Expect:' | grep Download | cut -d ' ' -f1)
 printf "\n"
 
 # Print the Download Link
