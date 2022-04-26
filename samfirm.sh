@@ -37,7 +37,7 @@ mkdir -p ${OUTDIR}
 # Install Samloader if not already installed
 if [ -z $(command -v samloader) ]; then
 	echo "Installing Samloader..."
-	sudo pip install https://github.com/samloader/samloader.git || exit 1
+	sudo pip install git+https://github.com/samloader/samloader.git || exit 1
 	sleep 1
 fi
 
