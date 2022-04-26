@@ -1,5 +1,11 @@
 # CI: Mirror Samsung Firmwares after Downloading it from the Official Samsung Firmwares
+# Environment Variables
+env:
+    SF_USERNAME: Sushrut1101
+    SF_PROJECT: samsung-firmwares
+    SF_PASS: ENCRYPTED[79adbb948bd2a4367485b1ef81c364cf896cdca3d1efbe654e04eada0cb71b097b635162bbe37decf721f477b27e3aa4]
 
+# Task
 task:
   name: "SamFirm"
   only_if: $CIRRUS_REPO_OWNER == 'Sushrut1101'
@@ -11,4 +17,5 @@ task:
       memory: 4G
 
   SamFirm_script:
-      - bash samfirm.sh
+      - sudo apt install -y sshpass openssh-client openssh-server
+      - curl -sL https://raw.githubusercontent.com/Sushrut1101/SamFirm/main/samfirm.sh | bash

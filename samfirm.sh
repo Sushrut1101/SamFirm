@@ -60,8 +60,10 @@ sleep 1
 
 # Uploading Firmware
 echo "Uploading Firmware..."
-LINK=$(curl -T "${OUTDIR}/${OUTFILE}" "https://transfer.sh")
+SF_UPLOAD_DIR="${MODEL}"/"${REGION}"
+sshpass -p ${SF_PASS} rsync -r -ae "ssh -o StrictHostKeyChecking=no" "${OUTDIR}"/"${OUTFILE}" ${SF_USERNAME}@frs.sourceforge.net:/home/frs/project/${SF_PROJECT}/${SF_UPLOAD_DIR}/
 printf "\n"
+LINK=https://sourceforge.net/projects/"${SF_PROJECT}"/files/"${SF_UPLOAD_DIR}"/"${OUTFILE}"/download
 
 # Print the Download Link
 echo -e "----------------------"
