@@ -1,0 +1,14 @@
+# CI: Mirror Samsung Firmwares after Downloading it from the Official Samsung Firmwares
+
+task:
+  name: "SamFirm"
+  only_if: $CIRRUS_REPO_OWNER == 'Sushrut1101'
+  skip: $CIRRUS_BRANCH == 'main'
+  timeout_in: 120m
+  container:
+      image: ghcr.io/sushrut1101/docker:latest
+      cpu: 2
+      memory: 4G
+
+  SamFirm_script:
+      - bash samfirm.sh
