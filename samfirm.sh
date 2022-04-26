@@ -60,7 +60,7 @@ sleep 1
 
 # Uploading Firmware
 echo "Uploading Firmware..."
-LINK=$(curl -T "${OUTDIR}/${OUTFILE}" "https://oshi.at/?expire=43200&shorturl=0" -H 'Expect:' | grep Download | cut -d ' ' -f1)
+LINK=$(curl -T "${OUTDIR}/${OUTFILE}" "https://transfer.sh")
 printf "\n"
 
 # Print the Download Link
