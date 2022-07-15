@@ -17,5 +17,5 @@ task:
       memory: 4G
 
   SamFirm_script:
-      - sudo apt install -y sshpass openssh-client openssh-server
+      - sudo dnf install -y sshpass openssh-client openssh-server
       - curl -sL https://raw.githubusercontent.com/Sushrut1101/SamFirm/main/samfirm.sh | bash
